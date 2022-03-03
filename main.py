@@ -9,6 +9,8 @@ FRAMES = 1000
 
 FPS = 25
 
+show_working = False
+
 # grid_scale = (screen_size[0] / grid_size[0], screen_size[1] / grid_size[1])
 
 colour_grad = ((255, 0, 0), (0, 0, 255))
@@ -87,9 +89,6 @@ def testRect(x, y, w, h, depth, mode):
 
         return []
 
-    wa = 0
-    ha = 0
-
     if mode:
         testRect(x, y, int(w / 2) + 1, int(h / 2) + 1, depth + 1, mode)
         testRect(x + int(w / 2), y, int(w / 2) + 1, int(h / 2) + 1, depth + 1, mode)
@@ -117,16 +116,16 @@ for f in range(FRAMES):
     screen.fill((0, 0, 0))
 
     MIN_DEPTH = 5
-    # Comment for step by step
-    testRect(0, 0, screen_size[0], screen_size[1], 0, True)
 
-    # Uncomment for step by step
-    # args = ((0, 0, screen_size[0], screen_size[1], 0),)
-    # for i in range(MAX_DEPTH):
-    #     print(i)
-    #     args = step_by_step(args, i)
-    #     pygame.display.update()
-    #     time.sleep(1)
+    if not show_working:
+        testRect(0, 0, screen_size[0], screen_size[1], 0, True)
+    else:
+        args = ((0, 0, screen_size[0], screen_size[1], 0),)
+        for i in range(MAX_DEPTH):
+            print(i)
+            args = step_by_step(args, i)
+            pygame.display.update()
+            time.sleep(1)
 
     pygame.display.update()
 
@@ -135,5 +134,4 @@ for f in range(FRAMES):
 
     ms = clock.tick()
 
-    # pygame.image.save(screen, 'frames/frame_' + str(f) + '.png')
     print(f, '/', FRAMES, str(ms) + "ms")
