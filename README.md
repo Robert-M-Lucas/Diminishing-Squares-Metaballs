@@ -9,7 +9,7 @@ This program divides the screen into squares and if those squares are determined
 to a minimum size where the square is filled in.
 
 ### Pros
-- Faster
+- Speed
 
 ### Cons
 - If a square has a section of line going through it but all of the corners are out or all of the corners are in the shape,
